@@ -8,7 +8,7 @@ kgdb를 이용해 arm64 커널을 바로 디버깅 할 수 있도록 빌드 해놓은
 _~~영어를 못해서 한글로 적은 것은 아닙니다. ㅎㅎㅎㅎㅎㅎ ^^;;;;;~~_
 
 ### Debugging Environment
-* **Host OS** : Ubuntu(18.04 LTS) on Windows (Download on Windows Store)
+* **Host OS** : Ubuntu(18.04 LTS) on Windows (Download from Windows Store)
 * **Target Kernel Version** : v4.16.0
 * **GDB Version** : GNU gdb:multiarch 8.1.0
 * **Compiler Version** : aarch64:linux:gnu:gcc 7.3.0

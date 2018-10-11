@@ -59,6 +59,14 @@ qemu-system-aarch64 -machine virt -cpu cortex-a57 -smp 2 -nographic \
 * `-kernel Image` : Use the kernel image.
 * `-append "kgdboc=ttyS0,115200"` : Use serial port of ttyS0 and Baud rate is 115200bps. 
 
+> <http://studyfoss.egloos.com/5491211>
+
+> <https://www.slideshare.net/aksmj/kgdbkdb>
+
+> <https://withinrafael.com/2018/02/11/boot-arm64-builds-of-windows-10-in-qemu/>
+
+> <http://jake.dothome.co.kr/qemu/>
+
 #### GDB
 
 ###### Ubuntu
@@ -81,6 +89,9 @@ target remote :1234
 이후는 gdb 명령어를 이용해 이용 하면 된다. `-S` 옵션으로 인해 Head.S에서 cpu가 Freeze 상태.
 `b(ranch) [func]` 로 특정 함수에 breakpoint를 걸고 `c(ontinue)`를 실행하면 해당 함수까지 구동한다.
 
+> <https://sjp38.github.io/post/qemu_kernel_debugging/>
+
+> <https://code.i-harness.com/ko-kr/q/14fc388>
 
 ## You can do
 ~~_너두? 야 나두._~~

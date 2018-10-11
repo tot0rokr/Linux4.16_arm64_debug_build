@@ -11,11 +11,80 @@ _~~영어를 못해서 한글로 적은 것은 아닙니다. ㅎㅎㅎㅎㅎㅎ ^^;;;;;~~_
 ### Debugging Environment
 * **Host OS** : Ubuntu(18.04 LTS) on Windows (Download from Windows Store)
 * **Target Kernel Version** : v4.16.0
-* **GDB Version** : GNU gdb:multiarch 8.1.0
-* **Compiler Version** : aarch64:linux:gnu:gcc 7.3.0
-* **Qemu Version** : qemu:system:aarch64 2.11.1
+* **GDB Version** : GNU gdb-multiarch 8.1.0
+* **Compiler Version** : aarch64-linux-gnu-gcc 7.3.0
+* **Qemu Version** : qemu-system-aarch64 2.11.1
 
-## How to get ready for compiling
+
+## How to do it
+~~_손 발을 Do it! 단 둘이 둘이! 이 밤을 Take it!_~~
+
+### Install
+
+#### GDB
+
+###### Ubuntu
+```sh
+sudo apt-get install gdb-multiarch
+```
+
+#### QEMU
+
+###### Ubuntu
+```sh
+sudo apt-get install qemu-system-aarch64
+```
+
+
+### Use
+
+이 Repository 디렉터리에서 동작시킨다.
+
+#### QEMU
+
+###### Ubuntu
+```sh
+qemu-system-aarch64 -machine virt -cpu cortex-a57 -smp 2 -nographic -m 4096M -s -S -kernel Image -append "kgdboc=ttyS0,115200"
+```
+
+* `$ qemu-system-aarch64` : Start qemu emulator.
+* `-machine (-M) virt` : Use virt machine and virt machine's default dtb.
+* `-cpu cortex-a57` : Use cortex-a57 cpu.
+* `-smp 2` : Use 2 cores.
+* `-nographic` : Do not use GUI qemu.
+* `-m 4096M` : Use 4096MB memory. Default 128M.
+* `-s` : Use gdbserver (localhost:1234, tcp)
+* `-S` : Freeze the cpu.
+* `-kernel Image` : Use the kernel image.
+* `-append "kgdboc=ttyS0,115200"` : Use serial port of ttyS0 and Baud rate is 115200bps. 
+
+#### GDB
+
+###### Ubuntu
+
+**Prompt= $**
+```sh
+gdb-multiarch vmlinux
+```
+
+**Prompt= (gdb)**
+```sh
+set architecture aarch64
+set serial baud 115200
+target remote :1234
+```
+* `(gdb) set architecture aarch64` : 디버깅 할 아키텍쳐를 aarch64로 변경. 기본 gdb에는 없는 아키텍쳐.
+* `(gdb) set serial baud 115200` : baud rate를 115200bps로 변경.
+* `(gdb) target remote :1234` : qemu로 구동한 os에 접속. qemu에서 `-s` 옵션에 기본 포트는 `:1234`
+
+이후는 gdb 명령어를 이용해 이용 하면 된다. `-S` 옵션으로 인해 Head.S에서 cpu가 Freeze 상태.
+`b(ranch) [func]` 로 특정 함수에 breakpoint를 걸고 `c(ontinue)`를 실행하면 해당 함수까지 구동한다.
+
+
+## You can do
+~~_너두? 야 나두._~~
+
+### How to get ready for compiling
 
 
 **Install Dependent Packages**
@@ -44,7 +113,7 @@ sudo apt-get install binutils-aarch64-linux-gnu gcc-aarch64-linux-gnu \
 > [https://blog.thinkbee.kr/linux/crosscompile-arm/](https://blog.thinkbee.kr/linux/crosscompile-arm/)
 
 
-## How to make Image?
+### How to make Image
 
 ```sh
 make mrproper
@@ -53,15 +122,15 @@ make menuconfig
 make Image
 ```
 
-* `$ make mrproper` : config 파일 clean
-* `$ make defconfig` : 해당 arch의 defconfig 파일로 .config 설정 (./arch/ARCH/configs/defconfig 달랑 하나있음)
-* `$ make menuconfig` : 추가 변경할 config 설정(kgdb 설정)
+* `$ make mrproper` : config 파일 clean.
+* `$ make defconfig` : 해당 arch의 defconfig 파일로 .config 설정. (./arch/ARCH/configs/defconfig 달랑 하나있음)
+* `$ make menuconfig` : 추가 변경할 config 설정(kgdb 설정).
 * `$ make Image` :  Image (커널이미지) 빌드.  
         * Caution : -j 옵션을 주지 않는 것을 권장. (파일 의존성 문제로 컴파일 중단이 자주 벌어짐)
 
 > [http://xenostudy.tistory.com/485](http://xenostudy.tistory.com/485)
 
-## How to update configuration file for debugging
+### How to update configuration file for debugging
 
 * **defconfig**
 ![config-defconfig](https://tot0ro-prog.firebaseapp.com/Image/Linux4.16_arm64_debug_build/make_config.PNG)

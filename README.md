@@ -44,7 +44,8 @@ sudo apt-get install qemu-system-aarch64
 
 ###### Ubuntu
 ```sh
-qemu-system-aarch64 -machine virt -cpu cortex-a57 -smp 2 -nographic -m 4096M -s -S -kernel Image -append "kgdboc=ttyS0,115200"
+qemu-system-aarch64 -machine virt -cpu cortex-a57 -smp 2 -nographic \
+                -m 4096M -s -S -kernel Image -append "kgdboc=ttyS0,115200"
 ```
 
 * `$ qemu-system-aarch64` : Start qemu emulator.

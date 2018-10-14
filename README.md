@@ -124,6 +124,23 @@ sudo apt-get install binutils-aarch64-linux-gnu gcc-aarch64-linux-gnu \
 
 > [https://blog.thinkbee.kr/linux/crosscompile-arm/](https://blog.thinkbee.kr/linux/crosscompile-arm/)
 
+### How to configure a Makefile
+
+Modify a Makefile.
+
+```sh
+vi Makefile
+```
+
+1. Set Architecture and Cross compiler.
+
+![config-defconfig](https://tot0ro-prog.firebaseapp.com/Image/Linux4.16_arm64_debug_build/makefile1.PNG)
+
+2. Set Checkstack architecture.
+
+![config-defconfig](https://tot0ro-prog.firebaseapp.com/Image/Linux4.16_arm64_debug_build/makefile2.PNG)
+
+
 
 ### How to make Image
 
@@ -146,6 +163,8 @@ make Image
 
 * **defconfig**
 ![config-defconfig](https://tot0ro-prog.firebaseapp.com/Image/Linux4.16_arm64_debug_build/make_config.PNG)
+
+#### make menuconfig
 
 * **CONFIG\_DEBUG\_INFO=y**
 ![config-debuginfo](https://tot0ro-prog.firebaseapp.com/Image/Linux4.16_arm64_debug_build/debug_info.PNG)

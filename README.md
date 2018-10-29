@@ -43,6 +43,8 @@ sudo apt-get install qemu-system-aarch64
 
 #### QEMU
 
+![qemu_exec](https://user-images.githubusercontent.com/24751868/47661004-8d50be80-dbdb-11e8-8059-ef80ced11c89.PNG)
+
 ###### Ubuntu
 ```sh
 qemu-system-aarch64 -machine virt -cpu cortex-a57 -smp 2 -nographic \
@@ -135,11 +137,11 @@ vi Makefile
 
 1. Set Architecture and Cross compiler.
 
-![config-defconfig](https://tot0ro-prog.firebaseapp.com/Image/Linux4.16_arm64_debug_build/makefile1.PNG)
+![makefile1](https://user-images.githubusercontent.com/24751868/47661002-8cb82800-dbdb-11e8-92a3-8fdf87440d85.PNG)
 
 2. Set Checkstack architecture.
 
-![config-defconfig](https://tot0ro-prog.firebaseapp.com/Image/Linux4.16_arm64_debug_build/makefile2.PNG)
+![makefile2](https://user-images.githubusercontent.com/24751868/47661003-8d50be80-dbdb-11e8-9708-790e53bba28b.PNG)
 
 
 
@@ -163,21 +165,21 @@ make Image
 ### How to update configuration file for debugging
 
 * **defconfig**
-![config-defconfig](https://tot0ro-prog.firebaseapp.com/Image/Linux4.16_arm64_debug_build/make_config.PNG)
+![make_config](https://user-images.githubusercontent.com/24751868/47661000-8cb82800-dbdb-11e8-8e1b-241b2c293d54.PNG)
 
 #### make menuconfig
 
 * **CONFIG\_DEBUG\_INFO=y**
-![config-debuginfo](https://tot0ro-prog.firebaseapp.com/Image/Linux4.16_arm64_debug_build/debug_info.PNG)
+![debug_info](https://user-images.githubusercontent.com/24751868/47660994-8b86fb00-dbdb-11e8-9be1-dc20609faf3e.PNG)
 
 * **CONFIG\_KGDB=y**
-![config-kgdb](https://tot0ro-prog.firebaseapp.com/Image/Linux4.16_arm64_debug_build/kgdb.PNG)
+![kgdb](https://user-images.githubusercontent.com/24751868/47660998-8c1f9180-dbdb-11e8-8bc5-b061636342fe.PNG)
 
 * **CONFIG\_KGDB\_SERIAL\_CONSOLE=y**
-![config-kgdb-serial-console](https://tot0ro-prog.firebaseapp.com/Image/Linux4.16_arm64_debug_build/kgdb_serial_console.PNG)
+![kgdb_serial_console](https://user-images.githubusercontent.com/24751868/47660999-8cb82800-dbdb-11e8-81f8-66dbb99bc577.PNG)
 
 * **CONFIG\_FRAME\_POINTER=y**
-![config-frame-pointer](https://tot0ro-prog.firebaseapp.com/Image/Linux4.16_arm64_debug_build/frame_pointer.PNG)
+![frame_pointer](https://user-images.githubusercontent.com/24751868/47660996-8c1f9180-dbdb-11e8-8170-83169ca31590.PNG)
 
 > [http://studyfoss.egloos.com/5490783](http://studyfoss.egloos.com/5490783)
 
